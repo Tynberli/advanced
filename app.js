@@ -1,21 +1,17 @@
 'use strict'
-const user = "2010-03-01";
-//console.log(Number(new Date(user)));
-
-function validateYears(user) {
-    const curYer = Number(new Date());
-    //console.log(curYer);
-    const difference = curYer - user;
-    //console.log(difference);
-    const age = difference / (1000 * 60 * 60 * 24 * 365);
-    //console.log(age);
-    const fullAge = Math.round(age)
-    //console.log(fullAge);
-    if (fullAge >= 14) {
-        return true;
-    } else {
-        return false;
-    }
+function updateCountdown() {
+    const now = new Date();
+    const newYear = new Date(now.getFullYear() + 1, 0, 1);
+    const timeLeft = newYear - now;
+    const mouth = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 31));
+    const days = Math.floor(timeLeft % (1000 * 60 * 60 * 31) / (1000 * 60 * 60));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    document.querySelector('.countdown').innerHTML =
+        `До нового года осталось: 
+        ${mouth} месяцев, ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд`;
 }
 
-console.log(validateYears(Number(new Date(user))));
+updateCountdown();
+setInterval(updateCountdown, 1000);
