@@ -1,17 +1,47 @@
 'use strict'
-function updateCountdown() {
-    const now = new Date();
-    const newYear = new Date(now.getFullYear() + 1, 0, 1);
-    const timeLeft = newYear - now;
-    const mouth = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 31));
-    const days = Math.floor(timeLeft % (1000 * 60 * 60 * 31) / (1000 * 60 * 60));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-    document.querySelector('.countdown').innerHTML =
-        `До нового года осталось: 
-        ${mouth} месяцев, ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд`;
+//Базовый класс 
+const Base = function (race, name, language) {
+    this.race = race;
+    this.name = name;
+    this.language = language;
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+Base.prototype.greet = function () {
+    console.log(`Меня зовут ${this.name}, я представитель расы ${this.race}. Говорю на ${this.language}.`);
+}
+
+//Класс Орка
+const Orc = function (race, name, language, weapon) {
+    Base.call(this, race, name, language);
+    this.weapon = weapon;
+}
+
+Orc.prototype = Object.create(Base.prototype);
+Orc.prototype.constructor = Orc;
+
+Orc.prototype.attack = function () {
+    console.log(`${this.name} атакует с помощью ${this.weapon}!`);
+}
+//Класс Эльфа
+const Elf = function (race, name, language, spellType) {
+    Base.call(this, race, name, language);
+    this.spellType = spellType;
+}
+
+Elf.prototype = Object.create(Base.prototype);
+Elf.prototype.constructor = Elf;
+
+Elf.prototype.castSpell = function () {
+    console.log(`${this.name} создает заклинание типа ${this.spellType}!`);
+}
+
+const person1 = new Base('Человек', 'Арагорн', 'Русский');
+person1.greet();
+
+const orc1 = new Orc('Орк', 'Гром', 'Орочий', 'топор');
+orc1.greet();
+orc1.attack();
+
+const elf1 = new Elf('Эльф', 'Леголас', 'Эльфийский', 'воздух');
+elf1.greet();
+elf1.castSpell();
