@@ -1,13 +1,26 @@
 'use strict'
-/* Спроектируйте класс Billing со свойством amount и методом
-calculateTotal для расчёта счёта. Сделайте разный calculateTotal
-для разных типов:
-fixBilling - где нужно вернуть amount как результат
-hourBilling - который считатет amount * число часов
-itemBilling где считается amount * число элементов
-соблюдайте принцип открытости / закрытости */
 
-class Billing {
+const pokemon = new XMLHttpRequest();
+pokemon.open('GET', 'https://pokeapi.co/api/v2/pokemon/ditto');
+pokemon.send();
 
-}
+pokemon.addEventListener('load', function () {
+    const params = JSON
+        .parse(this.responseText)
+        .abilities[0]
+        .ability;
+    console.log(`Название ${params.name}`);
 
+    const effect = new XMLHttpRequest();
+    effect.open('GET', params.url);
+    effect.send();
+
+    effect.addEventListener('load', function () {
+        const descriptionEffect = JSON
+            .parse(this.responseText)
+            .effect_entries[0]
+            .effect;
+        console.log(`Описание способности
+${descriptionEffect}`)
+    })
+});
