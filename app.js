@@ -1,6 +1,6 @@
 'use strict'
-
-const pokemon = new XMLHttpRequest();
+/*Перепишите прошлый пример на цепочку Promise  */
+ const pokemon = new XMLHttpRequest();
 pokemon.open('GET', 'https://pokeapi.co/api/v2/pokemon/ditto');
 pokemon.send();
 
@@ -23,4 +23,4 @@ pokemon.addEventListener('load', function () {
         console.log(`Описание способности
 ${descriptionEffect}`)
     })
-});
+}); 
