@@ -1,21 +1,8 @@
-'use strict'
+'use strict';
+import { Task } from './task.js';
+import { User } from './user.js';
 
-const wrapper = document.querySelector('.wrapper');
-console.log(wrapper);
-for (let i = 0; i < 5; i++) {
-    const el = document.createElement('button');
-    el.innerText = `Нажми меня`;
-    el.classList.add('button');
-    wrapper.append(el);
-}
-const btn = document.querySelectorAll('.button');
-const text = document.querySelector('.text');
-let count = 0;
+const myTask = new Task('Hello, I am a task!');
+const myUser = new User(myTask);
 
-btn.forEach((button) => {
-    button.innerText = 'Нажми меня';
-    button.addEventListener('click', () => {
-        button.innerText = 'Нажата';
-        text.innerText = `Количество нажатий ${count += 1}`
-    })
-})
+myUser.do();
