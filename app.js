@@ -25,4 +25,4 @@ function rollDice(diceType) {
 }
 
 const result = rollDice('d6');
-console.log(`Результат броска d6 кубика: ${result}`);
+console.log(`Результат броска кубика: ${result}`);
