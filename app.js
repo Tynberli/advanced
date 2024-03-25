@@ -1,8 +1,16 @@
 'use strict'
-/* Сделайте функцию получения координат пользователя, 
-используя API но преобразовав его в Promise. */
+function getLocationPromise() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+}
 
-navigator.geolocation.getCurrentPosition((position) => {
-    doSomthing(position.coords.latitude, position.coords.longitude);
-});
-console.log(navigator)
+getLocationPromise()
+    .then(position => {
+        console.log(`latitude: ${position.coords.latitude}, longitude: ${position.coords.longitude}`);
+    })
+    .catch(error => {
+        console.error('Ошибка получения геопозиции: ', error);
+    });
+
+
