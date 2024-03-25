@@ -1,13 +1,38 @@
 'use strict'
-/* Спроектируйте класс Billing со свойством amount и методом
-calculateTotal для расчёта счёта. Сделайте разный calculateTotal
-для разных типов:
-fixBilling - где нужно вернуть amount как результат
-hourBilling - который считатет amount * число часов
-itemBilling где считается amount * число элементов
-соблюдайте принцип открытости / закрытости */
-
 class Billing {
+    constructor(amount) {
+        this.amount = amount;
+    }
 
+    calculateTotal() {
+        return this.amount;
+    }
 }
 
+class FixedBilling extends Billing {
+    calculateTotal() {
+        return super.calculateTotal();
+    }
+}
+
+class HourBilling extends Billing {
+    constructor(amount, hours) {
+        super(amount);
+        this.hours = hours;
+    }
+
+    calculateTotal() {
+        return super.calculateTotal() * this.hours;
+    }
+}
+
+class ItemBilling extends Billing {
+    constructor(amount, items) {
+        super(amount);
+        this.items = items;
+    }
+
+    calculateTotal() {
+        return super.calculateTotal() * this.items;
+    }
+}
