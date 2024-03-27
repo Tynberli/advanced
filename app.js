@@ -1,6 +1,10 @@
 'use strict'
+function validDice(diceType) {
+    return ['d4', 'd6', 'd8', 'd10', 'd12', 'd16', 'd20'].includes(diceType);
+}
+
 function rollDice(diceType) {
-    if (diceType !== 'd4' && diceType !== 'd6' && diceType !== 'd8' && diceType !== 'd10' && diceType !== 'd12' && diceType !== 'd16' && diceType !== 'd20') {
+    if (!validDice(diceType)) {
         return 'Неподдерживаемый тип кубика. Пожалуйста, выберите d4, d6, d8, d10, d12, d16 или d20.';
     }
 
