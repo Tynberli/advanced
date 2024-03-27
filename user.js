@@ -1,7 +1,6 @@
 'use strict';
-const Task = require('./task');
 
-class User {
+export class User {
     constructor(task) {
         this.task = task;
     }
@@ -11,4 +10,3 @@ class User {
     }
 }
 
-module.exports = User;
