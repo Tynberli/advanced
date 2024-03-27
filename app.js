@@ -11,11 +11,15 @@ for (let i = 0; i < 5; i++) {
 const btn = document.querySelectorAll('.button');
 const text = document.querySelector('.text');
 let count = 0;
-
+let lastClickedButton = null;
 btn.forEach((button) => {
-    button.innerText = 'Нажми меня';
+
     button.addEventListener('click', () => {
+        if (lastClickedButton && lastClickedButton !== button) {
+            lastClickedButton.innerText = 'Нажми меня';
+        }
         button.innerText = 'Нажата';
+        lastClickedButton = button;
         text.innerText = `Количество нажатий ${count += 1}`
     })
 })
